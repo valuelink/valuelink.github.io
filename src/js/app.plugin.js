@@ -153,8 +153,8 @@
                     '<i class="fa fa-envelope-o fa-2x text-success"></i>'+
                   '</span>'+
                   '<span class="media-body block m-b-none">'+
-                    'Sophi sent you a email<br>'+
-                    '<small class="text-muted">1 minutes ago</small>'+
+                    '合同已签回<br>'+
+                    '<small class="text-muted">1 分钟前</small>'+
                   '</span>'+
                 '</a>';	
   setTimeout(function(){addMsg($msg);}, 1500);
