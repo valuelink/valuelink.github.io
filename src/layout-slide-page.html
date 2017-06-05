@@ -17,7 +17,8 @@
     .swiper-pagination {
       position: static;
     }
-    .swiper-pagination-bullet{
+    .swiper-pagination-bullet,.carousel-indicators li {
+      border-radius: 20px;
       width:30px;
       height:30px;
       text-align:center;
@@ -27,7 +28,12 @@
       opacity:1;
       background:rgba(0,0,0,0.2);
     }
-    .swiper-pagination-bullet-active{
+    .swiper-pagination-bullet-active , .carousel-indicators li.active{
+      width:30px;
+      height:30px;
+      text-align:center;
+      line-height:30px;
+      font-size:14px;
       color:#fff;
       font-weight: bold;
       background:#06799f;
