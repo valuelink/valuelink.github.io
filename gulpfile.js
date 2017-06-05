@@ -1,5 +1,6 @@
 //导入工具包 require('node_modules里对应模块')
 var gulp = require('gulp'), //本地安装gulp所用到的地方
+	livereload = require('gulp-livereload');
     less = require('gulp-less');
 
 //定义一个testLess任务（自定义任务名称）
@@ -13,6 +14,15 @@ gulp.task('default',['testLess']); //定义默认任务
 
 gulp.task('testWatch', function () {
     gulp.watch('src/**/*.less', ['testLess']); //当所有less文件发生改变时，调用testLess任务
+});
+
+gulp.task('watch', function () {    // 这里的watch，是自定义的，写成live或者别的也行
+    var server = livereload();
+    
+    // app/**/*.*的意思是 app文件夹下的 任何文件夹 的 任何文件
+    gulp.watch('src/*.html', function (file) {
+        server.changed(file.path);
+    });
 });
 
 //gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数
