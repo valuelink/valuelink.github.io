@@ -13,7 +13,7 @@ gulp.task('lessTask', function () {
 
 gulp.task('serve', function() {
     browserSync.init({
-        port: 80,
+        port: 8080,
         server: {
             baseDir: ['src']
         }
