@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/valuelink/valuelink.github.io#readme",
   "devDependencies": {
+    "browser-sync": "^2.18.12",
     "gulp": "^3.9.1",
-    "gulp-less": "^3.3.0",
-    "gulp-livereload": "^3.8.1"
+    "gulp-less": "^3.3.0"
   }
 }
