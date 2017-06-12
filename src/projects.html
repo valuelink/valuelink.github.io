@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>  
+  <meta charset="utf-8" />
+  <title>评估管理系统</title>
+  <meta name="description" content="评估管理系统" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="css/font.css" type="text/css" />
+  <link rel="stylesheet" href="css/app.css" type="text/css" />  
+  <link rel="stylesheet" href="js/datatables/datatables.css" type="text/css"/>
+  
+    <!--[if lt IE 9]>
+    <script src="js/ie/html5shiv.js"></script>
+    <script src="js/ie/respond.min.js"></script>
+    <script src="js/ie/excanvas.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <section class="vbox">
+      <header class="bg-primary header header-md navbar navbar-fixed-top-xs">
+        <div class="navbar-header aside">
+          <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+            <i class="icon-list"></i>
+          </a>
+          <a href="index.html" class="navbar-brand text-lt">
+            <i class="fa-vimeo-square fa"></i>
+            <span class="hidden-nav-xs m-l-sm">蓝策</span>
+          </a>
+          <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+            <i class="icon-settings"></i>
+          </a>
+        </div>      
+        <ul class="nav navbar-nav hidden-xs">
+          <li>
+            <a href="#nav,.navbar-header" data-toggle="class:nav-xs,nav-xs" class="text-muted">
+              <i class="fa fa-indent text"></i>
+              <i class="fa fa-dedent text-active"></i>
+            </a>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left input-s-lg m-t m-l-n-xs hidden-xs" role="search">
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
+              </span>
+              <input type="text" class="form-control input-sm no-border rounded" placeholder="搜索">
+            </div>
+          </div>
+        </form>
+        <div class="navbar-right ">
+          <ul class="nav navbar-nav m-n hidden-xs nav-user user">
+            <li class="hidden-xs">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-grid"></i>
+              </a>
+            </li>
+            <li class="hidden-xs">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="icon-bell"></i>
+                <span class="badge badge-sm up bg-danger count">2</span>
+              </a>
+              <section class="dropdown-menu aside-xl animated fadeInUp">
+                <section class="panel bg-white">
+                  <div class="panel-heading b-light bg-light">
+                    <strong>有 <span class="count">2</span> 条未读消息</strong>
+                  </div>
+                  <div class="list-group list-group-alt">
+                    <a href="#" class="media list-group-item">
+                      <span class="pull-left thumb-sm">
+                        <img src="images/a0.png" alt="..." class="img-circle">
+                      </span>
+                      <span class="media-body block m-b-none">
+                        合同审核申请<br>
+                        <small class="text-muted">10 分钟以前</small>
+                      </span>
+                    </a>
+                    <a href="#" class="media list-group-item">
+                      <span class="media-body block m-b-none">
+                        张三上传了合同文件<br>
+                        <small class="text-muted">1 小时前</small>
+                      </span>
+                    </a>
+                  </div>
+                  <div class="panel-footer text-sm">
+                    <a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>
+                  </div>
+                </section>
+              </section>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                  <img src="images/m0.jpg" alt="...">
+                </span>
+                图形控制 <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu animated fadeInRight">            
+                <li>
+                  <span class="arrow top"></span>
+                  <a href="#">个人资料</a>
+                </li>
+                <li>
+                  <a href="profile.html">修改密码</a>
+                </li>
+                <li>
+                  <a href="docs.html">帮助文档</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="modal.lockme.html" data-toggle="ajaxModal" >退出</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>      
+      </header>
+      <section>
+        <section class="hbox stretch">
+          <!-- .aside -->
+          <aside class="bg-inverse aside hidden-print" id="nav">          
+            <section class="vbox">
+              <section class="scrollable">
+                <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="10px" data-railOpacity="0.2">
+
+                  <!-- nav -->                 
+                  <nav class="nav-primary hidden-xs">
+                    <ul class="nav bg clearfix">
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                        项目
+                      </li>
+                      <li>
+                        <a href="index.html">
+                          <i class="fa-dashboard fa"></i>
+                          <span class="font-bold">控制面板</span>
+                        </a>
+                      </li>
+                      <li class="m-b hidden-nav-xs"></li>
+                    </ul>
+                    <ul class="nav" data-ride="collapse">
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                        项目评估
+                      </li>
+                      <li>
+                        <a href="#" class="auto">
+                          <span class="pull-right text-muted">
+                            <i class="fa fa-angle-left text"></i>
+                            <i class="fa fa-angle-down text-active"></i>
+                          </span>
+                          <i class="icon-user icon"></i>
+                          <span>客户管理</span>
+                        </a>
+                        <ul class="nav dk text-sm">
+                          <li  class="active">
+                            <a href="layout-color.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>客户管理</span>
+                            </a>
+                          </li>
+                          <li >
+                            <a href="layout-boxed.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>潜在客户管理</span>
+                            </a>
+                          </li>
+                          <li >
+                            <a href="layout-fluid.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>友商管理</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#" class="auto">
+                          <span class="pull-right text-muted">
+                            <i class="fa fa-angle-left text"></i>
+                            <i class="fa fa-angle-down text-active"></i>
+                          </span>
+                          <i class="icon-screen-desktop icon">
+                          </i>
+                          <span>项目管理</span>
+                        </a>
+                        <ul class="nav dk text-sm">
+                          <li  class="active">
+                            <a href="layout-color.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+
+                              <span>立项管理</span>
+                            </a>
+                          </li>
+                          <li >
+                            <a href="layout-boxed.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>项目列表</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li >
+                        <a href="#" class="auto">
+                          <span class="pull-right text-muted">
+                            <i class="fa fa-angle-left text"></i>
+                            <i class="fa fa-angle-down text-active"></i>
+                          </span>
+                          <i class="icon-folder-alt icon">
+                          </i>
+                          <span>文档管理</span>
+                        </a>
+                        <ul class="nav dk text-sm">
+                          <li >
+                            <a href="buttons.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>文档模板</span>
+                            </a>
+                          </li>
+                          <li >
+                            <a href="icons.html" class="auto">             
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>报价函和保密函</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li >
+                        <a href="#" class="auto">
+                          <span class="pull-right text-muted">
+                            <i class="fa fa-angle-left text"></i>
+                            <i class="fa fa-angle-down text-active"></i>
+                          </span>
+                          <i class="fa-tasks fa">
+                          </i>
+                          <span>任务管理</span>
+                        </a>
+                        <ul class="nav dk text-sm">
+                          <li >
+                            <a href="profile.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>待办任务</span>
+                            </a>
+                          </li>
+                          <li >
+                            <a href="blog.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>已办任务</span>
+                            </a>
+                          </li>
+                          <li >
+                            <a href="invoice.html" class="auto">                                                        
+                              <i class="fa fa-angle-right text-xs"></i>
+                              <span>任务历史</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <ul class="nav text-sm">
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                        数据
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="icon-pie-chart icon"></i>
+                          <span>收款统计</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="icon-speedometer icon"></i>
+                          <span>工作统计</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul class="nav text-sm">
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                        财务
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa-dollar fa"></i>
+                          <span>收款核实</span>
+                        </a>
+                      </li>
+                    </ul>
+                    <ul class="nav text-sm">
+                      <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                        <span class="pull-right"><a href="#"><i class="icon-plus i-lg"></i></a></span>
+                        系统
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="icon-equalizer icon"></i>
+                          <span>受托方</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="icon-lock icon"></i>
+                          <span>权限管理</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="icon-settings"></i>
+                          <span>系统设置</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <!-- / nav -->
+                </div>
+              </section>
+            </section>
+          </aside>
+          <!-- /.aside -->
+          <section id="content">
+            <section class="vbox">
+              <section class="scrollable wrapper bg-white-only">
+                <section class="panel panel-default">
+                  <header class="panel-heading" >
+                  <span><i class="icon icon-grid"></i> 滑动分页</span>
+                  <a href="#" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> 立项申请</a>
+                  </header>
+                  <!-- <section class="panel-body"> -->
+                      <!-- 查询 -->
+                      <div class="well form-inline">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon">项目名称</div>
+                              <input type="text" class="form-control" id="exampleInputAmount">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon">状态</div>
+                              <select class="form-control">
+                                <option>正常</option>
+                                <option>冻结</option>
+                                <option>删除</option>
+                                <option>取消</option>
+                                <option>归档</option>
+                              </select>
+                            </div>
+                          </div>
+                          <button id="search-btn" class="btn btn-primary">查询<tton>
+                      </div>
+                      <!-- 查询 -->
+                      <div class="table-responsive">
+                          <table class="table table-striped m-b-none" id="projects-datatables">
+                            <thead>
+                              <tr>
+                                <th  style="width:20%">Rendering engine</th>
+                                <th  style="width:25%">Browser</th>
+                                <th  style="width:25%">Platform(s)</th>
+                                <th  style="width:15%">Engine version</th>
+                                <th  style="width:15%">CSS grade</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+                  <!-- </section> -->
+                  <footer class="panel-footer">
+                    <div class="text-center">
+                      datatables
+                    </div>
+                  </footer>
+                  </section>
+                </section>
+              </section>
+              <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+            </section>
+          </section>
+        </section>    
+      </section>
+      <script src="js/jquery.min.js"></script>
+      <!-- Bootstrap -->
+      <script src="js/bootstrap.js"></script>
+       <!-- App -->
+      <script src="js/app.js"></script>  
+      <!-- datatables -->
+      <script src="js/datatables/jquery.dataTables.min.js"></script>
+      <script src="js/datatables/jquery.csv-0.71.min.js"></script>
+     
+      <script src="js/slimscroll/jquery.slimscroll.min.js"></script>
+
+
+      <script src="js/app.plugin.js"></script>
+      <script>
+      $(document).ready(function(){
+
+        var data= [
+  {
+    "engine": "Trident",
+    "browser": "Internet Explorer 4.0",
+    "platform": "Win 95+",
+    "version": "4",
+    "grade": "X"
+  },
+  {
+    "engine": "Trident",
+    "browser": "Internet Explorer 5.0",
+    "platform": "Win 95+",
+    "version": "5",
+    "grade": "C"
+  },
+  {
+    "engine": "Trident",
+    "browser": "Internet Explorer 5.5",
+    "platform": "Win 95+",
+    "version": "5.5",
+    "grade": "A"
+  },
+  {
+    "engine": "Trident",
+    "browser": "Internet Explorer 6",
+    "platform": "Win 98+",
+    "version": "6",
+    "grade": "A"
+  },
+  {
+    "engine": "Trident",
+    "browser": "Internet Explorer 7",
+    "platform": "Win XP SP2+",
+    "version": "7",
+    "grade": "A"
+  },
+  {
+    "engine": "Trident",
+    "browser": "AOL browser (AOL desktop)",
+    "platform": "Win XP",
+    "version": "6",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Firefox 1.0",
+    "platform": "Win 98+ / OSX.2+",
+    "version": "1.7",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Firefox 1.5",
+    "platform": "Win 98+ / OSX.2+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Firefox 2.0",
+    "platform": "Win 98+ / OSX.2+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Firefox 3.0",
+    "platform": "Win 2k+ / OSX.3+",
+    "version": "1.9",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Camino 1.0",
+    "platform": "OSX.2+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Camino 1.5",
+    "platform": "OSX.3+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Netscape 7.2",
+    "platform": "Win 95+ / Mac OS 8.6-9.2",
+    "version": "1.7",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Netscape Browser 8",
+    "platform": "Win 98SE+",
+    "version": "1.7",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Netscape Navigator 9",
+    "platform": "Win 98+ / OSX.2+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.0",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.1",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1.1",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.2",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1.2",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.3",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1.3",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.4",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1.4",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.5",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1.5",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.6",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "1.6",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.7",
+    "platform": "Win 98+ / OSX.1+",
+    "version": "1.7",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Mozilla 1.8",
+    "platform": "Win 98+ / OSX.1+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Seamonkey 1.1",
+    "platform": "Win 98+ / OSX.2+",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Gecko",
+    "browser": "Epiphany 2.20",
+    "platform": "Gnome",
+    "version": "1.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "Safari 1.2",
+    "platform": "OSX.3",
+    "version": "125.5",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "Safari 1.3",
+    "platform": "OSX.3",
+    "version": "312.8",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "Safari 2.0",
+    "platform": "OSX.4+",
+    "version": "419.3",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "Safari 3.0",
+    "platform": "OSX.4+",
+    "version": "522.1",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "OmniWeb 5.5",
+    "platform": "OSX.4+",
+    "version": "420",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "iPod Touch / iPhone",
+    "platform": "iPod",
+    "version": "420.1",
+    "grade": "A"
+  },
+  {
+    "engine": "Webkit",
+    "browser": "S60",
+    "platform": "S60",
+    "version": "413",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 7.0",
+    "platform": "Win 95+ / OSX.1+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 7.5",
+    "platform": "Win 95+ / OSX.2+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 8.0",
+    "platform": "Win 95+ / OSX.2+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 8.5",
+    "platform": "Win 95+ / OSX.2+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 9.0",
+    "platform": "Win 95+ / OSX.3+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 9.2",
+    "platform": "Win 88+ / OSX.3+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera 9.5",
+    "platform": "Win 88+ / OSX.3+",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Opera for Wii",
+    "platform": "Wii",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Nokia N800",
+    "platform": "N800",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Presto",
+    "browser": "Nintendo DS browser",
+    "platform": "Nintendo DS",
+    "version": "8.5",
+    "grade": "C/A<sup>1</sup>"
+  },
+  {
+    "engine": "KHTML",
+    "browser": "Konqureror 3.1",
+    "platform": "KDE 3.1",
+    "version": "3.1",
+    "grade": "C"
+  },
+  {
+    "engine": "KHTML",
+    "browser": "Konqureror 3.3",
+    "platform": "KDE 3.3",
+    "version": "3.3",
+    "grade": "A"
+  },
+  {
+    "engine": "KHTML",
+    "browser": "Konqureror 3.5",
+    "platform": "KDE 3.5",
+    "version": "3.5",
+    "grade": "A"
+  },
+  {
+    "engine": "Tasman",
+    "browser": "Internet Explorer 4.5",
+    "platform": "Mac OS 8-9",
+    "version": "-",
+    "grade": "X"
+  },
+  {
+    "engine": "Tasman",
+    "browser": "Internet Explorer 5.1",
+    "platform": "Mac OS 7.6-9",
+    "version": "1",
+    "grade": "C"
+  },
+  {
+    "engine": "Tasman",
+    "browser": "Internet Explorer 5.2",
+    "platform": "Mac OS 8-X",
+    "version": "1",
+    "grade": "C"
+  },
+  {
+    "engine": "Misc",
+    "browser": "NetFront 3.1",
+    "platform": "Embedded devices",
+    "version": "-",
+    "grade": "C"
+  },
+  {
+    "engine": "Misc",
+    "browser": "NetFront 3.4",
+    "platform": "Embedded devices",
+    "version": "-",
+    "grade": "A"
+  },
+  {
+    "engine": "Misc",
+    "browser": "Dillo 0.8",
+    "platform": "Embedded devices",
+    "version": "-",
+    "grade": "X"
+  },
+  {
+    "engine": "Misc",
+    "browser": "Links",
+    "platform": "Text only",
+    "version": "-",
+    "grade": "X"
+  },
+  {
+    "engine": "Misc",
+    "browser": "Lynx",
+    "platform": "Text only",
+    "version": "-",
+    "grade": "X"
+  },
+  {
+    "engine": "Misc",
+    "browser": "IE Mobile",
+    "platform": "Windows Mobile 6",
+    "version": "-",
+    "grade": "C"
+  },
+  {
+    "engine": "Misc",
+    "browser": "PSP browser",
+    "platform": "PSP",
+    "version": "-",
+    "grade": "C"
+  },
+  {
+    "engine": "Other browsers",
+    "browser": "All others",
+    "platform": "-",
+    "version": "-",
+    "grade": "U"
+  }];
+      var oTable = $("#projects-datatables").dataTable( {
+
+      "searching": false,
+      // "lengthChange": false,
+      //"bProcessing": true,
+      //"sAjaxSource": "js/datatables/datatable.json",
+      "data": data,
+      // "sDom": "<'row'<'col-sm-6'f>r>t<'row'<'col-sm-4'l><'col-sm-4'i><'col-sm-4'p>>",
+      "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>t<'row'<'col-sm-6'i><'col-sm-6'p>>",
+      //"sPaginationType": "full_numbers",
+      "aoColumns": [
+        { "mData": "engine" },
+        { "mData": "browser" },
+        { "mData": "platform" },
+        { "mData": "version" },
+        { "mData": "grade" }
+      ],
+       "columnDefs": [{
+            "render": function(data, type, row) {
+                return "<a href='/' class='text-center text-lg'>"+data+"</a> <br/> <small>公司 北京波巴布</small>";
+            },
+            "targets": 0
+      }],
+      "language": {
+        "sProcessing": "处理中...",
+        "sLengthMenu": "显示 _MENU_ 项结果",
+        "sZeroRecords": "没有匹配结果",
+        "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+        "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+        "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+        "sInfoPostFix": "",
+        "sSearch": "搜索:",
+        "sUrl": "",
+        "sEmptyTable": "表中数据为空",
+        "sLoadingRecords": "载入中...",
+        "sInfoThousands": ",",
+        "oPaginate": {
+            "sFirst": "首页",
+            "sPrevious": "上页",
+            "sNext": "下页",
+            "sLast": "末页"
+        },
+        "oAria": {
+            "sSortAscending": ": 以升序排列此列",
+            "sSortDescending": ": 以降序排列此列"
+        }
+    }
+    } );
+         //搜索查询
+        // $("#search-btn").click(function () {
+        //     var _name=$("#search-name").val();
+        //     var _mobile=$("#search-mobile").val();
+        //     if(_name){
+        //         dataTable.column(1).search(_name);
+        //     }else {
+        //         dataTable.column(1).search("");
+        //     }
+        //     if(_mobile){
+        //         dataTable.column(2).search(_mobile);
+        //     }else {
+        //         dataTable.column(2).search("");
+        //     }
+        //     dataTable.draw();
+        // });
+
+      });
+    </script>
+  </body>
+  </html>
